@@ -8,7 +8,7 @@ const RecipeCard = ({ recipe }) => {
       <div>
         <span>{strCategory}</span>
         <h3>{strMeal}</h3>
-        <a href="">More Info</a>
+        <a href="/:id">More Info</a>
       </div>
     </div>
   );
