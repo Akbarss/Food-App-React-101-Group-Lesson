@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import RecipeCard from "./components/RecipeCard";
-import SearchBar from "./components/SearchBar";
+
+import RecipeCard from "./components/Cards/RecipeCard";
+import SearchBar from "./components/Form/SearchBar";
 import Layout from "./components/layout/layout";
 
 const searchApi = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
@@ -8,15 +9,14 @@ const searchApi = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
-  const [recipes, setRecipes] = useState([]);
+  const [recipe, setRecipe] = useState([]);
 
-  // search for the recipe
   const searchRecipes = async () => {
     setIsLoading(true);
     const url = searchApi + query;
     const res = await fetch(url);
     const data = await res.json();
-    setRecipes(data.meals);
+    setRecipe(data.meals);
     setIsLoading(false);
   };
 
@@ -24,19 +24,15 @@ const HomePage = () => {
     searchRecipes();
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     event.preventDefault();
     searchRecipes();
   };
   return (
     <Layout>
-      <div className="container">
-        <h2>Our Food Recipes</h2>
-        <SearchBar isLoading={isLoading} query={query} setQuery={setQuery} handleSubmit={handleSubmit} />
-        <div className="recipes">
-          {recipes ? recipes.map((recipe) => <RecipeCard key={recipe.idMeal} recipe={recipe} />) : "No Results."}
-        </div>
-      </div>
+      <h1>Food App</h1>
+      <SearchBar isLoading={isLoading} query={query} setQuery={setQuery} handleSubmit={handleSubmit} />
+      {recipe ? recipe.map((r) => <RecipeCard key={r.idMeal} recipe={r} />) : "No Products"}
     </Layout>
   );
 };

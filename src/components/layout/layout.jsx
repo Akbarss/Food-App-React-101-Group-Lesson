@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "./Header";
+import ButtonAppBar from "./Header";
 
 const Layout = (props) => {
   const { children } = props;
   return (
     <div>
-      <Header />
+      <ButtonAppBar />
       {children}
     </div>
   );
