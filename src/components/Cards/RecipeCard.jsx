@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const RecipeCard = ({ recipe }) => {
   const { idMeal, strMeal, strCategory, strMealThumb } = recipe;
@@ -8,7 +9,8 @@ const RecipeCard = ({ recipe }) => {
       <div>
         <span>{strCategory}</span>
         <h3>{strMeal}</h3>
-        <a href="/:id">More Info</a>
+
+        <NavLink to={`/about/${idMeal}`}>More</NavLink>
       </div>
     </div>
   );
