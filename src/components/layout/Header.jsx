@@ -18,6 +18,7 @@ export default function ButtonAppBar() {
           <Box flex={1}>
             <NavLink to={"/"}>Home</NavLink>
             <NavLink to={"/about"}>About</NavLink>
+            <NavLink to={"/photos"}>Photos</NavLink>
           </Box>
           <Button color="inherit">Login</Button>
         </Toolbar>
