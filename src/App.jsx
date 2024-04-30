@@ -1,5 +1,5 @@
+import { Box, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
-
 import RecipeCard from "./components/Cards/RecipeCard";
 import SearchBar from "./components/Form/SearchBar";
 import Layout from "./components/layout/layout";
@@ -32,7 +32,17 @@ const HomePage = () => {
     <Layout>
       <h1>Food App</h1>
       <SearchBar isLoading={isLoading} query={query} setQuery={setQuery} handleSubmit={handleSubmit} />
-      {recipe ? recipe.map((r) => <RecipeCard key={r.idMeal} recipe={r} />) : "No Products"}
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          {recipe
+            ? recipe.map((r, idx) => (
+                <Grid item xs={2} sm={4} md={4} key={idx}>
+                  <RecipeCard key={r.idMeal} recipe={r} />
+                </Grid>
+              ))
+            : "No Products"}
+        </Grid>
+      </Box>
     </Layout>
   );
 };
